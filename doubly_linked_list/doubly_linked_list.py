@@ -140,3 +140,15 @@ class DoublyLinkedList:
         if self.head is None:
             return None
         current = self.head
+        current_max = current.value
+        while current.next is not None:
+            current_max = max(current_max, current.next.value)
+            current = current.next
+        return current_max
+
+    def contains(self, node):
+        current = self.head
+        while current is not None:
+            if current == node:
+                return True
+        return False
