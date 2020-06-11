@@ -18,6 +18,13 @@ class LinkedList:
         self.head = None
         self.tail = None
 
+    def insert_at_head(self, value):
+        node = Node(value)
+        node.next = self.head
+        self.head = node
+        if self.tail is None:
+            self.tail = node
+
     def add_to_tail(self, data):
         new_node = Node(data)
 
@@ -45,14 +52,17 @@ class LinkedList:
     def remove_tail(self):
         if not self.tail:
             return None
-
+        current = self.head
         data = self.tail.get_data()
 
         if self.head is self.tail:
             self.head = None
             self.tail = None
         else:
-            self.tail = self.tail.get_next()
+            while current.next is not None:
+                current = current.next
+                if current.next is self.tail:
+                    self.tail = current
 
         return data
 
